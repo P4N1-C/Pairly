@@ -1,10 +1,16 @@
 {
   "name": "p2p-interviewer",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "npm run start --prefix backend"
+    "install-all": "npm install",
+    "build": "npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend",
+    "dev": "npm run dev --workspace=frontend & npm run dev --workspace=backend"
   },
   "keywords": [],
   "author": "",
