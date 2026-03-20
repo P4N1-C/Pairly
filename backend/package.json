@@ -17,7 +17,8 @@
     "express": "^5.1.0",
     "inngest": "^3.52.7",
     "mongoose": "^8.19.1",
-    "semver": "^7.7.4"
+    "semver": "^7.7.4",
+    "stream-chat": "^9.24.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

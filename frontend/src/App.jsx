@@ -1,5 +1,3 @@
-import { useState } from "react";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 
