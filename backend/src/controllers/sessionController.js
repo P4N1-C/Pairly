@@ -119,8 +119,20 @@ export async function joinSession(req, res) {
       });
     }
 
+    if (session.status !== "active") {
+      return res.status(400).json({
+        message: "Session is not active",
+      });
+    }
+
+    if (session.host.toString() === userId.toString()) {
+      return res.status(400).json({
+        message: "Host cannot be a participant",
+      });
+    }
+
     if (session.participant) {
-      return res.status(404).json({
+      return res.status(409).json({
         message: "Session Full!",
       });
     }
@@ -165,14 +177,16 @@ export async function endSession(req, res) {
       });
     }
 
-    session.status = "completed";
-    await session.save();
-
     // delete the stream video call and messages
     const call = streamClient.video.call("default", session.callId);
     await call.delete({ hard: true });
+
     const chat = chatClient.channel("messaging", session.callId);
     await chat.delete();
+
+    session.status = "completed";
+    await session.save();
+
     res.status(200).json({
       session,
       message: "Session ended",
