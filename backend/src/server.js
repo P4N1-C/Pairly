@@ -5,11 +5,16 @@ import { connectDB } from "./lib/db.js";
 import cors from "cors";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./lib/inngest.js";
+import { clerkMiddleware } from "@clerk/express";
+import { protectRoute } from "./middleware/protectRoute.js";
+import chatRoute from "./routes/chatRoute.js";
+
 const app = express();
 
 const __dirname = path.resolve();
 
 app.use(express.json());
+app.use(clerkMiddleware()); // adds auth field to request object: req.auth()
 // credentials : true lets server allows a browser to include cookies on requrest
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
 
@@ -25,7 +30,17 @@ app.get("/books", (req, res) => {
   });
 });
 
+// passing an array in middleware will flatten it and executes them sequentially, 1 by 1
+app.get("/video", protectRoute, (req, res) => {
+  const user = req.user;
+  res.status(200).json({
+    msg: "video endpoint",
+    user,
+  });
+});
+
 app.use("/api/inngest", serve({ client: inngest, functions }));
+app.use("/api/chat", chatRoute);
 
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
