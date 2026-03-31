@@ -24,7 +24,6 @@ function Problems() {
             Sharpen your coding skills with these curated problems
           </p>
         </div>
-
         {/* Problems */}
         <div className="space-y-4">
           {problems.map((problem) => (
