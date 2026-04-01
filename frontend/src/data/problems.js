@@ -33,15 +33,27 @@ export const PROBLEMS = {
       "Only one valid answer exists",
     ],
     starterCode: {
-      javascript: `function twoSum(nums, target) {
-  // Write your solution here
-  
+      cpp: `#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> twoSum(vector<int>& nums, int target) {
+    // Write your solution here
+    
+    return {};
 }
 
-// Test cases
-console.log(twoSum([2, 7, 11, 15], 9)); // Expected: [0, 1]
-console.log(twoSum([3, 2, 4], 6)); // Expected: [1, 2]
-console.log(twoSum([3, 3], 6)); // Expected: [0, 1]`,
+int main() {
+    auto printVec = [](vector<int> res) {
+        cout << "[" << res[0] << "," << res[1] << "]" << endl;
+    };
+
+    printVec(twoSum({2, 7, 11, 15}, 9)); // Expected: [0,1]
+    printVec(twoSum({3, 2, 4}, 6));      // Expected: [1,2]
+    printVec(twoSum({3, 3}, 6));         // Expected: [0,1]
+    return 0;
+}`,
       python: `def twoSum(nums, target):
     # Write your solution here
     pass
@@ -67,7 +79,7 @@ class Solution {
 }`,
     },
     expectedOutput: {
-      javascript: "[0,1]\n[1,2]\n[0,1]",
+      cpp: "[0,1]\n[1,2]\n[0,1]",
       python: "[0, 1]\n[1, 2]\n[0, 1]",
       java: "[0, 1]\n[1, 2]\n[0, 1]",
     },
@@ -96,19 +108,35 @@ class Solution {
     ],
     constraints: ["1 ≤ s.length ≤ 10⁵", "s[i] is a printable ascii character"],
     starterCode: {
-      javascript: `function reverseString(s) {
-  // Write your solution here
-  
+      cpp: `#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void reverseString(vector<char>& s) {
+    // Write your solution here
+    
 }
 
-// Test cases
-let test1 = ["h","e","l","l","o"];
-reverseString(test1);
-console.log(test1); // Expected: ["o","l","l","e","h"]
+void printVec(const vector<char>& s) {
+    cout << "[";
+    for(int i = 0; i < s.size(); i++) {
+        cout << "'" << s[i] << "'" << (i == s.size() - 1 ? "" : ",");
+    }
+    cout << "]" << endl;
+}
 
-let test2 = ["H","a","n","n","a","h"];
-reverseString(test2);
-console.log(test2); // Expected: ["h","a","n","n","a","H"]`,
+int main() {
+    vector<char> test1 = {'h','e','l','l','o'};
+    reverseString(test1);
+    printVec(test1); // Expected: ['o','l','l','e','h']
+
+    vector<char> test2 = {'H','a','n','n','a','h'};
+    reverseString(test2);
+    printVec(test2); // Expected: ['h','a','n','n','a','H']
+    return 0;
+}`,
       python: `def reverseString(s):
     # Write your solution here
     pass
@@ -141,7 +169,7 @@ class Solution {
 }`,
     },
     expectedOutput: {
-      javascript: '["o","l","l","e","h"]\n["h","a","n","n","a","H"]',
+      cpp: "['o','l','l','e','h']\n['h','a','n','n','a','H']",
       python: "['o', 'l', 'l', 'e', 'h']\n['h', 'a', 'n', 'n', 'a', 'H']",
       java: "[o, l, l, e, h]\n[h, a, n, n, a, H]",
     },
@@ -181,15 +209,25 @@ class Solution {
       "s consists only of printable ASCII characters",
     ],
     starterCode: {
-      javascript: `function isPalindrome(s) {
-  // Write your solution here
-  
+      cpp: `#include <iostream>
+#include <string>
+#include <cctype>
+
+using namespace std;
+
+bool isPalindrome(string s) {
+    // Write your solution here
+    
+    return false;
 }
 
-// Test cases
-console.log(isPalindrome("A man, a plan, a canal: Panama")); // Expected: true
-console.log(isPalindrome("race a car")); // Expected: false
-console.log(isPalindrome(" ")); // Expected: true`,
+int main() {
+    cout << boolalpha;
+    cout << isPalindrome("A man, a plan, a canal: Panama") << endl; // Expected: true
+    cout << isPalindrome("race a car") << endl;                     // Expected: false
+    cout << isPalindrome(" ") << endl;                              // Expected: true
+    return 0;
+}`,
       python: `def isPalindrome(s):
     # Write your solution here
     pass
@@ -213,7 +251,7 @@ print(isPalindrome(" "))  # Expected: True`,
 }`,
     },
     expectedOutput: {
-      javascript: "true\nfalse\ntrue",
+      cpp: "true\nfalse\ntrue",
       python: "True\nFalse\nTrue",
       java: "true\nfalse\ntrue",
     },
@@ -247,15 +285,28 @@ print(isPalindrome(" "))  # Expected: True`,
     ],
     constraints: ["1 ≤ nums.length ≤ 10⁵", "-10⁴ ≤ nums[i] ≤ 10⁴"],
     starterCode: {
-      javascript: `function maxSubArray(nums) {
-  // Write your solution here
-  
+      cpp: `#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int maxSubArray(vector<int>& nums) {
+    // Write your solution here
+    
+    return 0;
 }
 
-// Test cases
-console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4])); // Expected: 6
-console.log(maxSubArray([1])); // Expected: 1
-console.log(maxSubArray([5,4,-1,7,8])); // Expected: 23`,
+int main() {
+    vector<int> t1 = {-2,1,-3,4,-1,2,1,-5,4};
+    vector<int> t2 = {1};
+    vector<int> t3 = {5,4,-1,7,8};
+
+    cout << maxSubArray(t1) << endl; // Expected: 6
+    cout << maxSubArray(t2) << endl; // Expected: 1
+    cout << maxSubArray(t3) << endl; // Expected: 23
+    return 0;
+}`,
       python: `def maxSubArray(nums):
     # Write your solution here
     pass
@@ -279,7 +330,7 @@ print(maxSubArray([5,4,-1,7,8]))  # Expected: 23`,
 }`,
     },
     expectedOutput: {
-      javascript: "6\n1\n23",
+      cpp: "6\n1\n23",
       python: "6\n1\n23",
       java: "6\n1\n23",
     },
@@ -312,14 +363,26 @@ print(maxSubArray([5,4,-1,7,8]))  # Expected: 23`,
     ],
     constraints: ["n == height.length", "2 ≤ n ≤ 10⁵", "0 ≤ height[i] ≤ 10⁴"],
     starterCode: {
-      javascript: `function maxArea(height) {
-  // Write your solution here
-  
+      cpp: `#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int maxArea(vector<int>& height) {
+    // Write your solution here
+    
+    return 0;
 }
 
-// Test cases
-console.log(maxArea([1,8,6,2,5,4,8,3,7])); // Expected: 49
-console.log(maxArea([1,1])); // Expected: 1`,
+int main() {
+    vector<int> t1 = {1,8,6,2,5,4,8,3,7};
+    vector<int> t2 = {1,1};
+
+    cout << maxArea(t1) << endl; // Expected: 49
+    cout << maxArea(t2) << endl; // Expected: 1
+    return 0;
+}`,
       python: `def maxArea(height):
     # Write your solution here
     pass
@@ -341,7 +404,7 @@ print(maxArea([1,1]))  # Expected: 1`,
 }`,
     },
     expectedOutput: {
-      javascript: "49\n1",
+      cpp: "49\n1",
       python: "49\n1",
       java: "49\n1",
     },
@@ -349,10 +412,10 @@ print(maxArea([1,1]))  # Expected: 1`,
 };
 
 export const LANGUAGE_CONFIG = {
-  javascript: {
-    name: "JavaScript",
-    icon: "/javascript.png",
-    monacoLang: "javascript",
+  cpp: {
+    name: "C++",
+    icon: "/cpp.png",
+    monacoLang: "cpp",
   },
   python: {
     name: "Python",

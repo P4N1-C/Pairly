@@ -8,12 +8,12 @@ import OutputPanel from "../components/OutputPanel";
 import CodeEditorPanel from "../components/CodeEditorPanel";
 import { executeCode } from "../lib/piston";
 import toast from "react-hot-toast";
-
+import confetti from "canvas-confetti";
 function ProblemPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentProblemId, setCurrentProblemId] = useState("two-sum");
-  const [selectedLanguage, setSelectedLanguage] = useState("javascript");
+  const [selectedLanguage, setSelectedLanguage] = useState("cpp");
   const [code, setCode] = useState(
     PROBLEMS[currentProblemId].starterCode.javascript,
   );
@@ -82,7 +82,8 @@ function ProblemPage() {
     setOutput(result);
     setIsRunning(false);
     if (result.success) {
-      const expected = currentProblem.expectedOutout[selectedLanguage];
+      const expected = currentProblem.expectedOutput[selectedLanguage];
+
       const testPassed = checkIfTestsPassed(result.output, expected);
 
       if (testPassed) {
@@ -100,7 +101,6 @@ function ProblemPage() {
   return (
     <div className="h-screen bg-base-100 flex flex-col overflow-hidden">
       <Navbar />
-
       <div className="flex-1 min-h-0 overflow-hidden">
         <PanelGroup direction="horizontal">
           {/* LEFT SECTION */}
