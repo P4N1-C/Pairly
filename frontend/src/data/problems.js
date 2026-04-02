@@ -41,17 +41,27 @@ using namespace std;
 vector<int> twoSum(vector<int>& nums, int target) {
     // Write your solution here
     
-    return {};
+    return {0, 0};
 }
 
 int main() {
     auto printVec = [](vector<int> res) {
+        if (res.size() < 2) {
+            cout << "[]" << endl;
+            return;
+        }
         cout << "[" << res[0] << "," << res[1] << "]" << endl;
     };
 
-    printVec(twoSum({2, 7, 11, 15}, 9)); // Expected: [0,1]
-    printVec(twoSum({3, 2, 4}, 6));      // Expected: [1,2]
-    printVec(twoSum({3, 3}, 6));         // Expected: [0,1]
+    vector<int> nums1 = {2, 7, 11, 15};
+    printVec(twoSum(nums1, 9)); // Expected: [0,1]
+    
+    vector<int> nums2 = {3, 2, 4};
+    printVec(twoSum(nums2, 6)); // Expected: [1,2]
+    
+    vector<int> nums3 = {3, 3};
+    printVec(twoSum(nums3, 6)); // Expected: [0,1]
+    
     return 0;
 }`,
       python: `def twoSum(nums, target):
