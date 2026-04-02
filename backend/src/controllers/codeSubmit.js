@@ -1,5 +1,5 @@
 import axios from "axios";
-export default async function submitCode(req, res) {
+export async function codeSubmit(req, res) {
   try {
     const response = await axios.post(
       "https://api.onlinecompiler.io/api/run-code-sync",
