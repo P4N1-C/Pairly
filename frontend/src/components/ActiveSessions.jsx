@@ -33,13 +33,13 @@ function ActiveSessions({ sessions, isLoading, isUserInSession }) {
         <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2">
           {isLoading ? (
             <div className="flex items-center justify-center py-20">
-              <LoaderIcon className="size-10 animate-spin text-primary" />
+              <LoaderIcon className="size-10 animate-spin text-neutral" />
             </div>
           ) : sessions.length > 0 ? (
             sessions.map((session) => (
               <div
                 key={session._id}
-                className="card bg-base-200 border-2 border-base-300 hover:border-primary/50"
+                className="card bg-base-200 border-2 border-base-300 hover:border-neutral/50"
               >
                 <div className="flex items-center justify-between gap-4 p-5">
                   <div className="flex items-center gap-4 flex-1">

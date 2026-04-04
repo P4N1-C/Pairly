@@ -45,7 +45,6 @@ function DashboardPage() {
 
   const activeSessions = activeSessionsData?.session || [];
   const recentSessions = recentSessionsData?.session || [];
-  console.log(activeSessions);
 
   const isUserInSession = (session) => {
     if (!user.id) return false;

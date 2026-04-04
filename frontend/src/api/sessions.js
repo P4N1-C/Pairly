@@ -32,7 +32,7 @@ export const sessionApi = {
   },
 
   getStreamToken: async () => {
-    const response = await axiosInstance.post(`/chat/token`);
+    const response = await axiosInstance.get(`/chat/token`);
     return response.data;
   },
 };
