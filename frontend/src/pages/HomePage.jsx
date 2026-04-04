@@ -118,7 +118,7 @@ function HomePage() {
       <div className="max-w-7xl mx-auto px-4 py-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">
-            Everything you need to know{" "}
+            Everything you need to{" "}
             <span className="text-neutral font mono">Succeed</span>
           </h2>
           <p className="text-lg text-base-control/70 max-w-2xl mx-auto">

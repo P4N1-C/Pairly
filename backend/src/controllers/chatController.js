@@ -7,8 +7,8 @@ export async function getStreamToken(req, res) {
     res.status(200).json({
       token,
       userId: req.user.clerkId,
-      username: req.user.name,
-      image: req.user.image,
+      userName: req.user.name,
+      userImage: req.user.image,
     });
   } catch (error) {
     console.error("Error is getStreamToken controller", error);
