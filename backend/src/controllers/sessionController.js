@@ -18,6 +18,7 @@ export async function createSession(req, res) {
       difficulty,
       host: userId,
       callId,
+      status: "active"
     });
 
     await streamClient.video.call("default", callId).getOrCreate({
@@ -199,3 +200,39 @@ export async function endSession(req, res) {
     });
   }
 }
+
+// Function to auto-terminate sessions
+async function autoTerminateSessions() {
+  const inactiveSessions = await Session.find({
+    status: "active",
+    participant: null,
+  });
+
+  for (const session of inactiveSessions) {
+    // Check if the session has been inactive for a certain duration (e.g., 5 minutes)
+    const createdAt = new Date(session.createdAt);
+    const now = new Date();
+    const inactivityDuration = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+    if (now - createdAt > inactivityDuration) {
+      try {
+        // Delete the stream video call and messages
+        const call = streamClient.video.call("default", session.callId);
+        await call.delete({ hard: true });
+
+        const chat = chatClient.channel("messaging", session.callId);
+        await chat.delete();
+
+        session.status = "completed";
+        await session.save();
+
+        console.log(`Auto-terminated session: ${session._id}`);
+      } catch (error) {
+        console.error(`Error auto-terminating session ${session._id}:`, error.message);
+      }
+    }
+  }
+}
+
+// Run the auto-termination function every minute
+setInterval(autoTerminateSessions, 60 * 1000);
